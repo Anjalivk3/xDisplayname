@@ -15,21 +15,23 @@ function Displayname() {
   }
 
   
-  function getFullName(){
+  function getFullName(e){
+      e.preventDefault();
       setFullName(`${firstName} ${lastName}`);
       console.log(fullName);
   }
 
-
   return (
     <div className={styles.formwrap}>
+      <form onSubmit={getFullName}>
       <h1>Full Name Display</h1>
       <label>First Name:</label>
-      <input type="text" value={firstName} onChange={getFirstName} ></input><br/>
+      <input type="text" required value={firstName} onChange={getFirstName} ></input><br/>
       <label>Last Name:</label>
-      <input type="text" value={lastName} onChange={getLastName}></input><br/>
-      <button onClick={getFullName}>Submit</button><br/>
-      { fullName && <p>Full Name: {fullName} </p>}     
+      <input type="text" required value={lastName} onChange={getLastName}></input><br/>
+      <button type="submit">Submit</button><br/>
+      </form>
+      {fullName && <p>Full Name: {fullName} </p>}    
     </div>
   )
 }
